@@ -21,7 +21,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }} --recursive --exclude ".git/*"
+          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive --debug
         
 
 
