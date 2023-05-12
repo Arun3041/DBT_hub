@@ -1,14 +1,24 @@
-upload to s3:
-  image:
-    name: python
-    entrypoint: [""]
-  script:
-    - pip install awscli
-    - aws configure set region ap-northeast-1
-    - aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/dbt_project/ --recursive
-  env:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+name: Upload to S3
+on:
+  push:
+    branches:
+      - main
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload to S3
+#         image: python
+#         entrypoint: [""]
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          pip install awscli
+          aws configure set region ap-northeast-1
+          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }} --recursive
+
 
 
 
