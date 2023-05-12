@@ -17,7 +17,7 @@ jobs:
         run: |
           pip install awscli
           aws configure set region us-east-1
-          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive --debug
+          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive 
 
 
 
