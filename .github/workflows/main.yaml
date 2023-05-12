@@ -1,3 +1,31 @@
+# name: Sync with S3 Bucket
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   sync:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+      
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-east-1
+          
+#       - name: Sync files with S3 bucket
+#         run: |
+#           aws s3 sync . s3://<bucket-name>/<remote-path>
+
+
+
 name: Deploy to S3 Bucket
 
 on:
@@ -21,13 +49,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive
+          aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive --debug
         
 
 
 
 
-
+# thhkjfhjdfhkddjfdkkdkkddskjffdskjfkdsjfkdjfkdsffkfjdskfjsdfkdsf
 
 # name: Upload to S3
 # on:
@@ -53,28 +81,4 @@ jobs:
 
 
 
-# name: Upload to S3
-# on:
-#   push:
-#     branches:
-#       - main
 
-# jobs:
-#   upload:
-#     runs-on: windows-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-
-#     - name: Install AWS CLI
-#       run: |
-#         sudo apt-get update
-#         sudo apt-get install -y awscli
-
-#     - name: Upload to S3
-#       run: |
-#         aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete
-#       env:
-#         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
