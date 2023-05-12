@@ -16,7 +16,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           pip install awscli
-          aws configure set region ap-northeast-1
+          aws configure set region us-east-1
           aws s3 cp . s3://${{ secrets.AWS_S3_BUCKET }}/DAG/github/ --recursive --debug
 
 
